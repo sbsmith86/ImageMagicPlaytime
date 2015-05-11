@@ -5,8 +5,11 @@ echo "Drawing image..."
 TEMP_FILE_1=tmp1.png
 TEMP_FILE_2=tmp2.png
 FINAL_FILE=test_image.jpeg
+COUNTER=1
 
 while read line; do
+  echo $COUNTER
+
   convert \
     -size 471x248 \
     canvas:#23B7FB \
@@ -30,9 +33,10 @@ while read line; do
     -gravity northwest \
     -geometry +20+50 \
     $TEMP_FILE_1 \
-    $FINAL_FILE
+    $COUNTER.jpeg
 
   rm $TEMP_FILE_1
   rm $TEMP_FILE_2
+  ((COUNTER++))
 
 done <sample.txt
